@@ -7,6 +7,9 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - id: test_ls
+      shell: bash
+      run: ls -la
     - id: test_action
       shell: bash
       run: |
