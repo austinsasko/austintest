@@ -5,7 +5,7 @@ runs:
   steps:
     - id: test_action
       run: |
-      curl -L \
+        curl -L \
         -X POST \
         -H "Accept: application/vnd.github+json" \
         -H "Authorization: Bearer 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" \
